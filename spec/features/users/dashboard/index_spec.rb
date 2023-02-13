@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users Dashboard' do
   before :each do
-    @user = User.create!(name: "John Cena", email: "John@email.com")
-    @user2 = User.create!(name: "Bob Cena", email: "behn@email.com")
+    @user = User.create!(name: "John Cena", email: "John@email.com", password: "pass123")
+    @user2 = User.create!(name: "Bob Cena", email: "behn@email.com", password: "pass123")
     @viewing_party1 = ViewingParty.create!(when: "11/21/2030", duration: 90, start_time: "7:00", movie_id: 550)
     @viewing_party2 = ViewingParty.create!(when: "11/21/2030", duration: 120, start_time: "10:00", movie_id: 550)
     @movie = Movie.create!(api_id: 550, image_url: "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", title: "Fight Club")

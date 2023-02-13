@@ -8,15 +8,26 @@ RSpec.describe "New User Page" do
   it 'contains a form to create a new user and redirects to their show page' do
     fill_in "Name", with: "John Cena"
     fill_in "Email", with: "youcantseeme@email.com"
+    fill_in "Password", with: "Test123"
+    fill_in "password_confirmation", with: "Test123"
     click_button "Submit"
     
-    user = User.find_by(name: "John Cena")
+    expect(current_path).to eq(welcome_index_path)
+  end
 
-    expect(current_path).to eq(user_dashboard_index_path(user))
+  it 'will not create a user if the password and password confirmation do not match' do
+    fill_in "Name", with: "John Cena"
+    fill_in "Email", with: "youcantseeme@email.com"
+    fill_in "Password", with: "Test123"
+    fill_in "password_confirmation", with: "Test"
+    click_button "Submit"
+    
+    expect(current_path).to eq(new_user_path)
+    expect(page).to have_content("Passwords must match!")
   end
 
   it 'will not accept a user name already in the system' do
-    user = User.create!(name: "Bob", email: "bob@email.com")
+    user = User.create!(name: "Bob", email: "bob@email.com", password: "test123")
     visit new_user_path
 
     fill_in "Name", with: "John Cena"

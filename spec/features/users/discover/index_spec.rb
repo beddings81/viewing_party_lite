@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "The Discover Movies Page" do
   before :each do
-    @user = User.create!(name: "John Cena", email: "johnc@email.com")
+    @user = User.create!(name: "John Cena", email: "johnc@email.com", password: "pass123")
   end
 
   it 'is accessed from a button on a users show page' do

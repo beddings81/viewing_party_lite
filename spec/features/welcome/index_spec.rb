@@ -16,17 +16,17 @@ RSpec.describe 'landing page' do
   end
 
   it 'list of Existing Users which links to the users dashboard' do
-    user1 = User.create!(email: "john@email.com", name: "John Cena")
-    user2 = User.create!(email: "Phil@email.com", name: "Phil Jones")
+    user1 = User.create!(email: "john@email.com", name: "John Cena", password: "pass123")
+    user2 = User.create!(email: "Phil@email.com", name: "Phil Jones", password: "pass123")
 
     visit welcome_index_path
 
     within "div#user_#{user1.id}" do
-      expect(page).to have_link(user1.email, href: user_dashboard_index_path(user1))
+      expect(page).to have_content(user1.email)
     end
 
     within "div#user_#{user2.id}" do
-      expect(page).to have_link(user2.email, href: user_dashboard_index_path(user2))
+      expect(page).to have_content(user2.email)
     end
   end
 

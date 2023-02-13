@@ -23,7 +23,7 @@ RSpec.describe ViewingParty do
 
   describe '#get_host' do
     it 'does' do
-      user = User.create!(name: "John Cena", email: "John@email.com")
+      user = User.create!(name: "John Cena", email: "John@email.com", password: "pass123")
       viewing_party1 = ViewingParty.create!(when: "11/21/2030 7:00", duration: 90, start_time: "7:00", movie_id: 550)
       Invitee.create!(user_id: user.id, viewing_party_id: viewing_party1.id, host: true)
 

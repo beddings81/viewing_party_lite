@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
     resources :discover, only: [:index]
   end
-  
+  post '/welcome', to: 'users#create'
+  get '/login', to: 'users#login_form'
+  post '/login', to: 'users#login_user'
 end
