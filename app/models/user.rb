@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  enum role: %w(default admin)
+
   def host?(vp_id)
     Invitee.where('viewing_party_id = ?', vp_id).where('user_id = ?', self.id)[0].host
   end

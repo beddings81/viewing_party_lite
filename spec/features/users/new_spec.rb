@@ -12,7 +12,7 @@ RSpec.describe "New User Page" do
     fill_in "password_confirmation", with: "Test123"
     click_button "Submit"
     
-    expect(current_path).to eq(welcome_index_path)
+    expect(current_path).to eq(root_path)
   end
 
   it 'will not create a user if the password and password confirmation do not match' do

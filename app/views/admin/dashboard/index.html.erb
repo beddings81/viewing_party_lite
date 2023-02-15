@@ -1,0 +1,6 @@
+<h1><%= @admin.name %>'s Admin Dashboard</h1>
+
+<h2>Registered Users</h2>
+<% @users.each do |user| %>
+  <p><%= link_to "#{user.email}", admin_user_path(user)  %></p>
+<% end %>

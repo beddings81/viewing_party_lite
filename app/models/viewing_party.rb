@@ -5,7 +5,7 @@ class ViewingParty < ApplicationRecord
   validates_presence_of :duration, :when, :start_time, :movie_id
 
   def get_movie
-    Movie.where('api_id = ?', self.movie_id)[0]
+    Movie.where('id = ?', self.movie_id)[0]
   end
 
   def get_host

@@ -15,8 +15,9 @@ RSpec.describe ViewingParty do
 
   describe '#get_movie' do
     it 'does' do
-      vp = ViewingParty.create!(when: "11/21/2030 7:00", duration: 90, start_time: "7:00", movie_id: 550)
       movie = Movie.create!(api_id: 550, image_url: "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", title: "Fight")
+      vp = ViewingParty.create!(when: "11/21/2030 7:00", duration: 90, start_time: "7:00", movie_id: movie.id)
+
       expect(vp.get_movie).to eq(movie)
     end
   end

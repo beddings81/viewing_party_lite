@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'landing page' do
   before :each do
-    visit welcome_index_path
+    visit root_path
   end
 
   it 'has the title of the application' do
@@ -18,8 +18,12 @@ RSpec.describe 'landing page' do
   it 'list of Existing Users which links to the users dashboard' do
     user1 = User.create!(email: "john@email.com", name: "John Cena", password: "pass123")
     user2 = User.create!(email: "Phil@email.com", name: "Phil Jones", password: "pass123")
+    visit login_path
+    fill_in :email, with: user1.email
+    fill_in :password, with: user1.password
+    click_button "Login"
 
-    visit welcome_index_path
+    visit root_path
 
     within "div#user_#{user1.id}" do
       expect(page).to have_content(user1.email)
@@ -31,6 +35,6 @@ RSpec.describe 'landing page' do
   end
 
   it 'has a link to go back to the landing page' do
-    expect(page).to have_link("Home", href: welcome_index_path)
+    expect(page).to have_link("Home", href: root_path)
   end
 end
