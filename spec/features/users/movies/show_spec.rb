@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "The Movie Details Page" do
   before :each do
-    @user = User.create!(name: "John Cena", email: "johnc@email.com")
+    @user = User.create!(name: "John Cena", email: "johnc@email.com", password: "pass123")
     json_response1 = File.read('spec/fixtures/fight_club_details.json')
     stub_request(:get, "https://api.themoviedb.org/3/movie/550?api_key=5b03ee47af6e087159e9baca0f110161").to_return(status: 200, body: json_response1, headers: {})
     
@@ -11,8 +11,13 @@ RSpec.describe "The Movie Details Page" do
       
     json_response3 = File.read('spec/fixtures/fight_club_reviews.json')
     stub_request(:get, "https://api.themoviedb.org/3/movie/550/reviews?api_key=5b03ee47af6e087159e9baca0f110161&language=en-US&page=1").to_return(status: 200, body: json_response3, headers: {})
+    
+    visit login_path
+    fill_in :email, with: @user.email
+    fill_in :password, with: @user.password
+    click_button "Login"
 
-    visit user_movie_path(@user, 550)
+    visit movie_path(550)
   end
 
   it 'contains the movie info, cast, and reviews' do
@@ -35,6 +40,6 @@ RSpec.describe "The Movie Details Page" do
   end
 
   it 'has a button to return to the discover page' do
-    expect(page).to have_link("Return to Discover Page", href: user_discover_index_path(@user))
+    expect(page).to have_link("Return to Discover Page", href: discover_index_path)
   end
 end

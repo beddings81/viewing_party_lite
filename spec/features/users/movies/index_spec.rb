@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Movies Results Page" do
   before :each do
-    @user = User.create!(name: "John Cena", email: "johnc@email.com")
+    @user = User.create!(name: "John Cena", email: "johnc@email.com", password: "pass123")
+    visit login_path
+    fill_in :email, with: @user.email
+    fill_in :password, with: @user.password
+    click_button "Login"
+
   end
 
   describe 'Top Rated Movies functionality' do
@@ -12,7 +17,7 @@ RSpec.describe "Movies Results Page" do
       stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=5b03ee47af6e087159e9baca0f110161")
         .to_return(status: 200, body: json_response, headers: {})
       
-      visit user_discover_index_path(@user)
+      visit discover_index_path
       click_button "Top Rated Movies"
     end
     
@@ -22,7 +27,7 @@ RSpec.describe "Movies Results Page" do
 
     it 'Movie titles are links to their show page' do
       within "div#movie_238" do
-        expect(page).to have_link("The Godfather", href: user_movie_path(@user, "238"))
+        expect(page).to have_link("The Godfather", href: movie_path(238))
       end
     end
   end
@@ -34,7 +39,7 @@ RSpec.describe "Movies Results Page" do
       stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=5b03ee47af6e087159e9baca0f110161&query=Fight")
         .to_return(status: 200, body: json_response, headers: {})
       
-      visit user_discover_index_path(@user)
+      visit discover_index_path
       fill_in :movie_search, with: "Fight"
       click_button "Search"
     end
@@ -45,7 +50,7 @@ RSpec.describe "Movies Results Page" do
 
     it 'Movie titles are links to their show page' do
       within "div#movie_550" do
-        expect(page).to have_link("Fight Club", href: user_movie_path(@user, "550"))
+        expect(page).to have_link("Fight Club", href: movie_path(550))
       end
     end
   end
