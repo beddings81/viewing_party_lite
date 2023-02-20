@@ -8,7 +8,7 @@ Viewing Party Lite is an application in which users can explore movie options an
 
 
 ### Database
-![adop_dont_shop_db](https://user-images.githubusercontent.com/111210465/220207713-4eeebf75-ee52-4196-ac18-bf5445c5f2a9.png)
+![viewing_party_db](https://user-images.githubusercontent.com/111210465/220207713-4eeebf75-ee52-4196-ac18-bf5445c5f2a9.png)
 
 
 ## Setup
