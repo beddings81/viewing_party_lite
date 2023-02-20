@@ -25,4 +25,4 @@ Viewing Party Lite is an application in which users can explore movie options an
 - Rails 5.2.6
 
 
-# [Live app here](https://peaceful-headland-48479.herokuapp.com/)
+# [Live app here](https://viewing-party-lite21478.herokuapp.com/)
