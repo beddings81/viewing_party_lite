@@ -23,6 +23,3 @@ Viewing Party Lite is an application in which users can explore movie options an
 - Ruby 2.7.2
 
 - Rails 5.2.6
-
-
-# [Live app here](https://viewing-party-lite21478.herokuapp.com/)
